@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://th.bing.com/th/id/R.786653caa036289ba5978f8a2838bddb?rik=Jace9ATfPow9Cg&riu=http%3a%2f%2fimages6.fanpop.com%2fimage%2fphotos%2f39300000%2fDog-dogs-39323649-1440-900.jpg&ehk=2j5hJZOGQYQL6IK9FydtWO%2fMjeCvMXSLLgWS2j9jERE%3d&risl=&pid=ImgRaw&r=0">
+    <title>Search</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+        #himanshu{
+
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+        #search_text{
+            border: 2px solid red;
+            height: 40px;
+            width: 650px;
+            margin-left: 27%;
+            margin-top: 1%;
+            background-color:white;
+    
+        }
+        #btn{
+            border: 1px solid red;
+            border-radius: 20px;
+            height: 30px;
+            width: 100px;
+            cursor: pointer;
+            margin-top: 1%;
+            color:wheat;
+            background-color: brown;
+        }
+        img{
+            height: 400px;
+            width: 600px;
+            margin-left: 30%;
+            margin-top: 1%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <input type="text" id = "search_text" placeholder="Search Any Breed ">
+        <button id = "btn" >search</button>
+        
+    </div>
+    <div id = "container">
+
+    </div>
+</body>
+</html>
+<script>
+let himanshu = document.getElementById("container");
+let btn_val = document.getElementById("btn");
+btn_val.addEventListener("click", function(){
+    showData();
+})
+var data = [];
+async function showData(){
+    let breedname = document.getElementById("search_text").value;
+    let url = `https://dog.ceo/api/breed/${breedname}/images`
+    let response =await  fetch(url);
+
+    let data =await response.json();
+   // console.log(data.message);
+
+    let array = [];
+    array.push(data.message);
+    apeendPic(array);
+}
+function apeendPic(arr){
+    
+    arr.forEach(function(el, ind){
+        console.log("value",el);
+        let div = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = el[ind];
+        console.log()
+
+        div.append(img);
+        contain.append(div);
+
+    })
+}
+
+</script>
